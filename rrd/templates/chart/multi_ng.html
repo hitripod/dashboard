@@ -104,9 +104,10 @@
                 </div>
                 {%endif%}
             </div>
-
             <div class="container-fluid multi-chart">
                 <div class="row">
+                  <img class="DBCSS-loading-image" ng-hide="vm.configs.length != 0" src="/static/grafana_statics/fav32.png">
+                  <span class="DBCSS-loading" ng-hide="vm.configs.length != 0">载入中...</span>
                     <div class="col-md-6" ng-repeat="con in vm.configs">
                         <div class="panel panel-default">
                             <div class="panel-heading" style="padding:8px;">
