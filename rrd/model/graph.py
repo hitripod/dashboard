@@ -154,6 +154,9 @@ class TmpGraph(object):
         cursor = db_conn.execute('''insert ignore into tmp_graph (endpoints, counters, ck) values(%s, %s, %s) ON DUPLICATE KEY UPDATE time_=%s''',
                 (es, cs, ck, datetime.datetime.now()))
         id_ = cursor.lastrowid
+        if not id_:
+            cursor = db_conn.execute("select id from tmp_graph where ck='" + ck + "'")
+            id_ = cursor.fetchone()[0]
         db_conn.commit()
         cursor and cursor.close()
         return id_
